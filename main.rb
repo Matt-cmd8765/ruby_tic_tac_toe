@@ -20,17 +20,14 @@ class Player
     @name = name
   end
 
-  def name
-    @name
-  end
-
   def symbol
-    puts 'Pick Xs or Os'
-    while gets.chomp != 'X' || gets.chomp != 'O'
+    symbol = nil
+    until symbol == 'X' or symbol == 'O'
       puts 'Pick Xs or Os'
-      gets.chomp
+      sym = gets.chomp
+      symbol = sym.upcase
     end
-    symbol.upcase
+    symbol
   end
 
   def comp_symbol(player_symbol)
@@ -39,8 +36,7 @@ class Player
 
   def move
     puts 'Enter your move'
-    move = gets.chomp
-    move.upcase
+    gets.chomp
   end
 
   def comp_move
@@ -61,17 +57,27 @@ def game(hash)
 
   until winner?(hash)
     move = matt.move
+    until hash[move.to_i] != 'X' && hash[move.to_i] != 'O'
+      move = matt.move
+    end
     hash[move.to_i] = symbol
     if winner?(hash)
       board.show_board(hash)
+      puts '#########################'
       puts "#{matt.name} wins!!!!"
+      puts '#########################'
       break
     end
     mov = comp.comp_move
+    until hash[mov.to_i] != 'X' && hash[mov.to_i] != 'O'
+      move = mov = comp.comp_move
+    end
     hash[mov.to_i] = sym
     board.show_board(hash)
     if winner?(hash)
+      puts ':(:(:(:(:(:(:(:(:(:('
       puts "#{comp.name} wins... Better luck next time!"
+      puts ':(:(:(:(:(:(:(:(:(:('
       break
     end
   end
@@ -114,18 +120,3 @@ def winner?(hash)
 end
 
 game(board_hash)
-
-# board = Board.new
-# matt = Player.new
-# comp = Computer.new
-
-# symbol = matt.symbol
-
-# sym = comp.comp_symbol(symbol)
-# mov = comp.comp_move
-# board_hash[mov.to_i] = sym
-
-# comp.comp_symbol(symbol)
-# crikey = matt.move
-# board_hash[crikey.to_i] = symbol
-# board.show_board(board_hash)
