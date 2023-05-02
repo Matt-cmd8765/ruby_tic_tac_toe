@@ -15,35 +15,40 @@ end
 # player and computer options
 class Player
   attr_reader :name
-  
+
   def initialize(name)
     @name = name
   end
 
+  # ask player if they want to play x's or Os
   def symbol
     symbol = nil
     until symbol == 'X' or symbol == 'O'
-      puts 'Pick Xs or Os'
+      puts "Pick X's or O's"
       sym = gets.chomp
       symbol = sym.upcase
     end
     symbol
   end
 
+  # make computer pick other symbol
   def comp_symbol(player_symbol)
     player_symbol == 'X' ? 'O' : 'X'
   end
 
+  # get move
   def move
     puts 'Enter your move'
     gets.chomp
   end
 
+  # computer moves randomly
   def comp_move
     rand(1..9)
   end
 end
 
+# Play the game
 def game(hash)
   puts "Let's play Tic-Tac-Toe!"
   puts 'First tell me your name!'
@@ -70,7 +75,7 @@ def game(hash)
     end
     mov = comp.comp_move
     until hash[mov.to_i] != 'X' && hash[mov.to_i] != 'O'
-      move = mov = comp.comp_move
+      mov = comp.comp_move
     end
     hash[mov.to_i] = sym
     board.show_board(hash)
@@ -83,6 +88,7 @@ def game(hash)
   end
 end
 
+# Logic to determine winner
 def winner?(hash)
   if hash[1] == 'X' && hash[2] == 'X' && hash[3] == 'X'
     true
