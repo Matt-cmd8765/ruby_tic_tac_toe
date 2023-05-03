@@ -1,39 +1,28 @@
 # hash to store all moves
 board_hash = { 1 => '1', 2 => '2', 3 => '3', 4 => '4', 5 => '5', 6 => '6', 7 => '7', 8 => '8', 9 => '9' }
 
-# board class
-class Board
-  def show_board(hash)
-    puts " #{hash[1]} | #{hash[2]} | #{hash[3]}  "
-    puts '---|---|---'
-    puts " #{hash[4]} | #{hash[5]} | #{hash[6]}  "
-    puts '---|---|---'
-    puts " #{hash[7]} | #{hash[8]} | #{hash[9]}  "
-  end
-end
-
-# player and computer options
+# player options
 class Player
-  attr_reader :name
+  attr_reader :name, :symbol, :player2_symbol
 
   def initialize(name)
     @name = name
   end
 
-  # ask player if they want to play x's or Os
+  # ask player 1 if they want to play x's or Os
   def symbol
-    symbol = nil
-    until symbol == 'X' or symbol == 'O'
+    @symbol = nil
+    until @symbol == 'X' or @symbol == 'O'
       puts "Pick X's or O's"
       sym = gets.chomp
-      symbol = sym.upcase
+      @symbol = sym.upcase
     end
-    symbol
+    @symbol
   end
 
-  # make computer pick other symbol
-  def comp_symbol(player_symbol)
-    player_symbol == 'X' ? 'O' : 'X'
+  # player 2 takes other symbol
+  def player2_symbol(player1_symbol)
+    player1_symbol == 'X' ? 'O' : 'X'
   end
 
   # get move
@@ -41,14 +30,37 @@ class Player
     puts 'Enter your move'
     gets.chomp
   end
-
-  # computer moves randomly
-  def comp_move
-    rand(1..9)
-  end
 end
 
 # Play the game
+
+class Game 
+  # Get info from the players
+  def get_info
+    puts 'Player 1 name:'
+    player1_name = gets.chomp
+    puts 'Player 2 name:'
+    player2_name = gets.chomp
+    player1 = Player.new(player1_name)
+    player2 = Player.new(player2_name)
+    puts "Player 1 choose X's or O's"
+    player1_symbol = player1.symbol
+    player2_symbol = player2.player2_symbol(player1_symbol)
+  end
+
+  # Shows the Tic-Tac-Toe board
+  def show_board(hash)
+    puts " #{hash[1]} | #{hash[2]} | #{hash[3]}  "
+    puts '---|---|---'
+    puts " #{hash[4]} | #{hash[5]} | #{hash[6]}  "
+    puts '---|---|---'
+    puts " #{hash[7]} | #{hash[8]} | #{hash[9]}  "
+  end
+
+
+  def play
+
+  end
 def game(hash)
   puts "Let's play Tic-Tac-Toe!"
   puts 'First tell me your name!'
