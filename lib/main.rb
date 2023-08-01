@@ -1,6 +1,4 @@
-require './lib/game'
-
-# hash to store all moves
+require_relative '../lib/game'
 
 game = Game.new
 game.info

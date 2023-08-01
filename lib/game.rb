@@ -1,7 +1,8 @@
-require './lib/player'
+require_relative '../lib/player'
 
 # Play the game
 class Game
+  attr_accessor :hash
   # Get info from the players
   attr_reader :player1, :player2
 
@@ -49,6 +50,9 @@ class Game
     end
   end
 
+  def tie?(counter)
+    counter == 9
+  end
 
   # play function. Should be shorter but I'm learning dammit.
   def play
@@ -62,7 +66,7 @@ class Game
         puts "#{player1.name} wins!"
         break
       end
-      if counter == 9
+      if tie?(counter)
         puts 'Tie!'
         break
       end
@@ -76,40 +80,3 @@ class Game
     end
   end
 end
-
-  # winner logic. Yes it is not DRY but I'm learning dammit
-  # def winner?(hash)
-  #   if hash[1] == 'X' && hash[2] == 'X' && hash[3] == 'X'
-  #     true
-  #   elsif hash[4] == 'X' && hash[5] == 'X' && hash[6] == 'X'
-  #     true
-  #   elsif hash[7] == 'X' && hash[8] == 'X' && hash[9] == 'X'
-  #     true
-  #   elsif hash[1] == 'X' && hash[4] == 'X' && hash[7] == 'X'
-  #     true
-  #   elsif hash[2] == 'X' && hash[5] == 'X' && hash[8] == 'X'
-  #     true
-  #   elsif hash[3] == 'X' && hash[6] == 'X' && hash[9] == 'X'
-  #     true
-  #   elsif hash[1] == 'X' && hash[5] == 'X' && hash[9] == 'X'
-  #     true
-  #   elsif hash[3] == 'X' && hash[5] == 'X' && hash[7] == 'X'
-  #     true
-  #   elsif hash[1] == 'O' && hash[2] == 'O' && hash[3] == 'O'
-  #     true
-  #   elsif hash[4] == 'O' && hash[5] == 'O' && hash[6] == 'O'
-  #     true
-  #   elsif hash[7] == 'O' && hash[8] == 'O' && hash[9] == 'O'
-  #     true
-  #   elsif hash[1] == 'O' && hash[4] == 'O' && hash[7] == 'O'
-  #     true
-  #   elsif hash[2] == 'O' && hash[5] == 'O' && hash[8] == 'O'
-  #     true
-  #   elsif hash[3] == 'O' && hash[6] == 'O' && hash[9] == 'O'
-  #     true
-  #   elsif hash[1] == 'O' && hash[5] == 'O' && hash[9] == 'O'
-  #     true
-  #   elsif hash[3] == 'O' && hash[5] == 'O' && hash[7] == 'O'
-  #     true
-  #   end
-  # end
