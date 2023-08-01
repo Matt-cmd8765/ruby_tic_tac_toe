@@ -27,10 +27,17 @@ class Player
     end
   end
 
+  def valid_move?(move)
+  end
+
   # get move
   def move(hash)
     puts "#{@name} enter your move"
     move = gets.chomp
+    until move.to_i >= 1 && move.to_i <=9
+      puts 'Please input a number between 1 and 9'
+      move = gets.chomp
+    end
     until hash[move.to_i] != 'X' && hash[move.to_i] != 'O'
       puts 'That square is taken, try again'
       move = gets.chomp
