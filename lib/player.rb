@@ -27,9 +27,6 @@ class Player
     end
   end
 
-  def valid_move?(move)
-  end
-
   # get move
   def move(hash)
     puts "#{@name} enter your move"

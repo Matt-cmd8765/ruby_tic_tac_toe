@@ -13,15 +13,19 @@ class Game
   end
 
   def info
+    self.get_names
+    puts "#{player1.name} choose X's or O's"
+    player1_symbol = player1.player_symbol
+    player2.assign_player2_symbol(player1_symbol)
+  end
+
+  def get_names
     puts 'Player 1 name:'
     player1_name = gets.chomp
     puts 'Player 2 name:'
     player2_name = gets.chomp
     @player1 = Player.new(player1_name)
     @player2 = Player.new(player2_name)
-    puts "#{player1.name} choose X's or O's"
-    player1_symbol = player1.player_symbol
-    player2.assign_player2_symbol(player1_symbol)
   end
 
   # Shows the Tic-Tac-Toe board
