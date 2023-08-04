@@ -6,16 +6,29 @@ class Player
     @name = name
   end
 
-  # ask player 1 if they want to play x's or Os
   def player_symbol
-    @symbol = nil
-    until @symbol == 'X' || @symbol == 'O'
+    loop do
       sym = gets.chomp
-      puts 'Only Xs or Os!' unless sym == 'X' || sym == 'O'
-      @symbol = sym.upcase
+      new_sym = sym.upcase
+      if new_sym == 'X' || new_sym == 'O'
+        @symbol = new_sym
+        return @symbol
+      else
+        puts "Only X's and O's!"
+      end
     end
-    @symbol
   end
+
+  # # ask player 1 if they want to play x's or Os
+  # def player_symbol
+  #   @symbol = nil
+  #   until @symbol == 'X' || @symbol == 'O'
+  #     sym = gets.chomp
+  #     puts 'Only Xs or Os!' unless sym == 'X' || sym == 'O'
+  #     @symbol = sym.upcase
+  #   end
+  #   @symbol
+  # end
 
   # player 2 takes other symbol
   def assign_player2_symbol(player1_symbol)
